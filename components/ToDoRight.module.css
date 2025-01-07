@@ -1,0 +1,210 @@
+.container {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+.userInfo {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.todoSection,
+.calendarSection {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 1rem;
+  width: 48%;
+}
+
+.todoSection h2,
+.calendarSection h2 {
+  margin-bottom: 1rem;
+}
+
+.addTaskContainer {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.addTaskContainer:hover {
+  background-color: #e0e0e0;
+}
+
+.addTaskContainer span {
+  margin-left: 0.5rem;
+}
+
+.taskContainer {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.taskContainer h3 {
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskTimestamp {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.taskContainer form {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.taskContainer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.taskContainer li {
+  background-color: #f4f4f4;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar {
+  width: 100%;
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.calendarBody {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendarDay {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+  cursor: pointer;
+  position: relative;
+}
+
+.calendarDay:hover {
+  background-color: #ddd;
+}
+
+.calendarDay.selected {
+  background-color: #4A90E2;
+  color: #fff;
+}
+
+.taskIndicator {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: #e74c3c;
+  color: white;
+  font-size: 0.7rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .todoSection,
+  .calendarSection {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+.prose {
+  max-width: 65ch;
+  color: #374151;
+}.prose p {
+  margin-bottom: 1em;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+
+.prose ul, .prose ol {
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.prose li {
+  margin-bottom: 0.5em;
+}
+
+.descriptionEditor {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.descriptionTextarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  resize: vertical;
+}

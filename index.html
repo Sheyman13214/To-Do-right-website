@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Right</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>To-Do Right</h1>
+    </header>
+    <main>
+        <section id="todo-section">
+            <h2>To-Do List</h2>
+            <form id="todo-form">
+                <input type="text" id="todo-input" placeholder="Add a new task" required>
+                <button type="submit">Add Task</button>
+            </form>
+            <button id="voice-input-btn">Voice Input</button>
+            <ul id="todo-list"></ul>
+        </section>
+        <section id="calendar-section">
+            <h2>Calendar</h2>
+            <div id="calendar">
+                <div id="calendar-header">
+                    <button id="prev-month">&lt;</button>
+                    <h3 id="current-month"></h3>
+                    <button id="next-month">&gt;</button>
+                </div>
+                <div id="calendar-body"></div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
