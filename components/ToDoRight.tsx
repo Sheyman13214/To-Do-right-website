@@ -1,4 +1,4 @@
-"use client"
+i"use client"
 
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
@@ -304,7 +304,7 @@ export default function ToDoRight() {
           <h4>ABOUT APP</h4>
           <p>App created by OLOWOMATIRE OLUWASEYIFUNMI OWOLABI</p>
           <p>App created for ALX final specialization project</p>
-          <p>Created on: July 7, 2023</p>
+          <p>Created on: January 7, 2025</p>
         </footer>
       </div>
     </Router>
