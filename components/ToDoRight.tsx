@@ -300,6 +300,12 @@ export default function ToDoRight() {
             />
           </Routes>
         </main>
+        <footer className={styles.footer}>
+          <h4>ABOUT APP</h4>
+          <p>App created by OLOWOMATIRE OLUWASEYIFUNMI OWOLABI</p>
+          <p>App created for ALX final specialization project</p>
+          <p>Created on: July 7, 2023</p>
+        </footer>
       </div>
     </Router>
   )
