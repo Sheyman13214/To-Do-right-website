@@ -1,4 +1,4 @@
-i"use client"
+"use client"
 
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
@@ -6,9 +6,10 @@ import styles from './ToDoRight.module.css'
 import Auth from './Auth'
 import LandingPage from './LandingPage'
 import TaskDetails from './TaskDetails'
-import { Plus, ChevronDown, ChevronUp } from 'lucide-react'
+import { Plus, ChevronDown, ChevronUp, Mic } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
 interface User {
   name: string
@@ -73,7 +74,7 @@ export default function ToDoRight() {
     }
   }
 
-  const handleVoiceInput = () => {
+  const handleVoiceInput = (targetField: 'item' | 'description') => {
     const recognition = new (window as any).webkitSpeechRecognition()
     recognition.lang = 'en-US'
 
@@ -81,7 +82,11 @@ export default function ToDoRight() {
 
     recognition.onresult = (event: any) => {
       const text = event.results[0][0].transcript
-      setInputValue(text)
+      if (targetField === 'item') {
+        setInputValue(text)
+      } else if (targetField === 'description' && editingTaskId !== null) {
+        updateTaskDescription(editingTaskId, text)
+      }
     }
 
     recognition.onerror = (event: any) => {
@@ -148,7 +153,6 @@ export default function ToDoRight() {
   }
 
   const handleForgotPassword = (phone: string) => {
-    // In a real application, you would implement password reset logic here
     console.log(`Password reset requested for phone number: ${phone}`)
     alert('Password reset instructions have been sent to your phone.')
   }
@@ -183,7 +187,10 @@ export default function ToDoRight() {
               />
               <Button type="submit">Add Item</Button>
             </form>
-            <Button onClick={handleVoiceInput} variant="outline">Voice Input</Button>
+            <Button onClick={() => handleVoiceInput('item')} variant="outline">
+              <Mic size={16} className="mr-2" />
+              Voice Input
+            </Button>
             <ul>
               {task.items.map((item, index) => (
                 <li key={index}>
@@ -218,7 +225,7 @@ export default function ToDoRight() {
         {editingTaskId === task.id && (
           <div className={styles.descriptionEditor}>
             <h4>Task Description:</h4>
-            <textarea
+            <Textarea
               value={task.description}
               onChange={(e) => {
                 const updatedTasks = tasks.map(t =>
@@ -229,19 +236,45 @@ export default function ToDoRight() {
               rows={5}
               className={styles.descriptionTextarea}
             />
-            <Button
-              onClick={() => {
-                updateTaskDescription(task.id, task.description)
-                setEditingTaskId(null)
-              }}
-            >
-              SAVE
-            </Button>
+            <div className={styles.descriptionActions}>
+              <Button
+                onClick={() => handleVoiceInput('description')}
+                variant="outline"
+                size="sm"
+              >
+                <Mic size={16} className="mr-2" />
+                Voice Input
+              </Button>
+              <Button
+                onClick={() => {
+                  updateTaskDescription(task.id, task.description)
+                  setEditingTaskId(null)
+                }}
+              >
+                SAVE
+              </Button>
+            </div>
           </div>
         )}
       </div>
     ))
   }
+
+  const baseUrl = 'http://localhost:3000';
+
+  const fetchTasks = async () => {
+    try {
+      const response = await fetch(`${baseUrl}/api/tasks`);
+      const data = await response.json();
+      setTasks(data);
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   if (showLanding) {
     return <LandingPage onNext={() => setShowLanding(false)} />
@@ -305,6 +338,7 @@ export default function ToDoRight() {
           <p>App created by OLOWOMATIRE OLUWASEYIFUNMI OWOLABI</p>
           <p>App created for ALX final specialization project</p>
           <p>Created on: January 7, 2025</p>
+          <p>Running on: {baseUrl}</p>
         </footer>
       </div>
     </Router>
