@@ -157,6 +157,10 @@ export default function ToDoRight() {
     alert('Password reset instructions have been sent to your phone.')
   }
 
+  const countWords = (text: string) => {
+    return text.trim().split(/\s+/).length;
+  };
+
   const renderTasks = () => {
     const filteredTasks = selectedDate
       ? tasks.filter(task => 
@@ -235,6 +239,7 @@ export default function ToDoRight() {
               }}
               rows={5}
               className={styles.descriptionTextarea}
+              placeholder="Write about your task (up to 400 words)"
             />
             <div className={styles.descriptionActions}>
               <Button
