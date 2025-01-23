@@ -1,6 +1,6 @@
-import React from 'react'
-import { ChevronRight } from 'lucide-react'
-import styles from './LandingPage.module.css'
+import React from "react"
+import { ChevronRight } from "lucide-react"
+import styles from "./LandingPage.module.css"
 
 interface LandingPageProps {
   onNext: () => void

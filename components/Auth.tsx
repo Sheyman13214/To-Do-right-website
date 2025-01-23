@@ -1,7 +1,8 @@
 "use client"
 
-import React, { useState } from 'react'
-import styles from './Auth.module.css'
+import type React from "react"
+import { useState } from "react"
+import styles from "./Auth.module.css"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
@@ -13,39 +14,39 @@ interface AuthProps {
 export default function Auth({ onAuthenticate, onForgotPassword }: AuthProps) {
   const [isSignUp, setIsSignUp] = useState(false)
   const [step, setStep] = useState(1)
-  const [name, setName] = useState('')
-  const [phone, setPhone] = useState('')
-  const [password, setPassword] = useState('')
-  const [mothersMaidenName, setMothersMaidenName] = useState('')
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [password, setPassword] = useState("")
+  const [mothersMaidenName, setMothersMaidenName] = useState("")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (isSignUp) {
       if (!name || !phone || !password || !mothersMaidenName) {
-        alert('Please fill in all fields')
+        alert("Please fill in all fields")
         return
       }
       onAuthenticate({ name, phone, password, mothersMaidenName })
     } else {
       if (step === 1) {
         if (!phone) {
-          alert('Please enter your phone number')
+          alert("Please enter your phone number")
           return
         }
         setStep(2)
       } else {
         if (!password) {
-          alert('Please enter your password')
+          alert("Please enter your password")
           return
         }
-        onAuthenticate({ name: '', phone, password })
+        onAuthenticate({ name: "", phone, password })
       }
     }
   }
 
   const handleForgotPassword = () => {
     if (!phone) {
-      alert('Please enter your phone number')
+      alert("Please enter your phone number")
       return
     }
     onForgotPassword(phone)
@@ -61,7 +62,7 @@ export default function Auth({ onAuthenticate, onForgotPassword }: AuthProps) {
         <h1>To-Do Right</h1>
       </div>
       <h2 className={styles.welcome}>WELCOME!</h2>
-      <h3>{isSignUp ? 'Sign Up' : 'Sign In'}</h3>
+      <h3>{isSignUp ? "Sign Up" : "Sign In"}</h3>
       <form onSubmit={handleSubmit}>
         {isSignUp && (
           <Input
@@ -100,7 +101,7 @@ export default function Auth({ onAuthenticate, onForgotPassword }: AuthProps) {
           />
         )}
         <Button type="submit" className={styles.button}>
-          {isSignUp ? 'Sign Up' : (step === 1 ? 'Next' : 'Sign In')}
+          {isSignUp ? "Sign Up" : step === 1 ? "Next" : "Sign In"}
         </Button>
       </form>
       {!isSignUp && step === 2 && (
@@ -114,9 +115,15 @@ export default function Auth({ onAuthenticate, onForgotPassword }: AuthProps) {
         </Button>
       )}
       <p>
-        {isSignUp ? 'Already have an account?' : "Don't have an account?"}
-        <Button onClick={() => { setIsSignUp(!isSignUp); setStep(1); }} className={styles.toggleButton}>
-          {isSignUp ? 'Sign In' : 'Sign Up'}
+        {isSignUp ? "Already have an account?" : "Don't have an account?"}
+        <Button
+          onClick={() => {
+            setIsSignUp(!isSignUp)
+            setStep(1)
+          }}
+          className={styles.toggleButton}
+        >
+          {isSignUp ? "Sign In" : "Sign Up"}
         </Button>
       </p>
     </div>
